@@ -1,0 +1,1377 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.v="1.2.3",this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{let r=arguments[0][e];delete arguments[0][e],arguments[0][t(e)]=r})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+	
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+	<!-- This site is optimized with the Yoast SEO plugin v21.0 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Hackeando as Mulheres - O Imperialista</title><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPoppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPoppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPoppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=swap"></noscript>
+	<link rel="canonical" href="https://oimperialista.com.br/hm-3/">
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Hackeando as Mulheres - O Imperialista">
+	<meta property="og:description" content="Manual da Mente Feminina – Tudo que você precisa saber antes de se envolver com uma mulher Qualquer mulher fica LOUCA quando conhece um cara que sabe mais dela do que ela mesma… Obtenha um mapa completo (e comprovado) da mente feminina, e use isso para conquistar a mulher que você quiser: QUERO O LIVRO… Continuar lendo Hackeando as Mulheres">
+	<meta property="og:url" content="https://oimperialista.com.br/hm-3/">
+	<meta property="og:site_name" content="O Imperialista">
+	<meta property="article:publisher" content="facebook.com/imperadordesucesso">
+	<meta property="article:modified_time" content="2023-08-13T23:14:46+00:00">
+	<meta property="og:image" content="images/MOCKUP-Hackeando-as-Mulheres-BLOG2-2.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:label1" content="Est. tempo de leitura">
+	<meta name="twitter:data1" content="11 minutos">
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://oimperialista.com.br/hm-3/","url":"https://oimperialista.com.br/hm-3/","name":"Hackeando as Mulheres - O Imperialista","isPartOf":{"@id":"https://oimperialista.com.br/#website"},"primaryImageOfPage":{"@id":"https://oimperialista.com.br/hm-3/#primaryimage"},"image":{"@id":"https://oimperialista.com.br/hm-3/#primaryimage"},"thumbnailUrl":"https://oimperialista.com.br/wp-content/uploads/2022/12/MOCKUP-Hackeando-as-Mulheres-BLOG2-2.png","datePublished":"2023-04-26T18:18:08+00:00","dateModified":"2023-08-13T23:14:46+00:00","breadcrumb":{"@id":"https://oimperialista.com.br/hm-3/#breadcrumb"},"inLanguage":"pt-BR","potentialAction":[{"@type":"ReadAction","target":["https://oimperialista.com.br/hm-3/"]}]},{"@type":"ImageObject","inLanguage":"pt-BR","@id":"https://oimperialista.com.br/hm-3/#primaryimage","url":"https://oimperialista.com.br/wp-content/uploads/2022/12/MOCKUP-Hackeando-as-Mulheres-BLOG2-2.png","contentUrl":"https://oimperialista.com.br/wp-content/uploads/2022/12/MOCKUP-Hackeando-as-Mulheres-BLOG2-2.png","width":565,"height":586,"caption":"Ebook hackeando as mulheres o imperialista"},{"@type":"BreadcrumbList","@id":"https://oimperialista.com.br/hm-3/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://oimperialista.com.br/"},{"@type":"ListItem","position":2,"name":"Hackeando as Mulheres"}]},{"@type":"WebSite","@id":"https://oimperialista.com.br/#website","url":"https://oimperialista.com.br/","name":"O Imperialista","description":"","publisher":{"@id":"https://oimperialista.com.br/#/schema/person/053fd5346e247d3f8b079727e5d6c117"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://oimperialista.com.br/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"pt-BR"},{"@type":["Person","Organization"],"@id":"https://oimperialista.com.br/#/schema/person/053fd5346e247d3f8b079727e5d6c117","name":"oimperialista","image":{"@type":"ImageObject","inLanguage":"pt-BR","@id":"https://oimperialista.com.br/#/schema/person/image/","url":"https://oimperialista.com.br/wp-content/uploads/2021/10/Coroa-em-PNG.png","contentUrl":"https://oimperialista.com.br/wp-content/uploads/2021/10/Coroa-em-PNG.png","width":1400,"height":1280,"caption":"oimperialista"},"logo":{"@id":"https://oimperialista.com.br/#/schema/person/image/"},"description":"Nós, aqui do Imperialista, estamos inteiramente comprometidos a te disponibilizar conhecimentos de alta qualidade sobre todas as áreas do Desenvolvimento Pessoal Masculino - Inteligência Emocional e Social, Mentalidade, Sedução, Linguagem Corporal e Sexualidade, que reunimos após muitos anos de estudo e muita prática. Mas e você, está comprometido consigo mesmo? Assume o compromisso de se tornar O Imperador de Si mesmo? Se sim, acompanhe nossos conteúdos e faça parte da nossa Irmandade!","sameAs":["https://oimperialista.com.br","facebook.com/imperadordesucesso","instagram.com/oimperialista/","https://br.pinterest.com/oimperialistaa/","https://www.youtube.com/channel/UCgN4MyF1egmOnhJBbT_owmA"]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<script type="rocketlazyloadscript" data-rocket-type="application/javascript">console.log('PixelYourSite Free version 9.4.2');</script>
+<link href="https://fonts.gstatic.com" crossorigin rel="preconnect">
+<link rel="alternate" type="application/rss+xml" title="Feed para O Imperialista »" href="https://oimperialista.com.br/feed/">
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para O Imperialista »" href="https://oimperialista.com.br/comments/feed/">
+<style>
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link data-minify="1" rel="stylesheet" id="ht_ctc_main_css-css" href="css/main.css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="css/style.min.css" media="all">
+<style id="wp-block-library-theme-inline-css">
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-audio{margin:0 0 1em}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.wp-block-embed{margin:0 0 1em}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-image{margin:0 0 1em}.wp-block-pullquote{border-bottom:4px solid;border-top:4px solid;color:currentColor;margin-bottom:1.75em}.wp-block-pullquote cite,.wp-block-pullquote footer,.wp-block-pullquote__citation{color:currentColor;font-size:.8125em;font-style:normal;text-transform:uppercase}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;font-style:normal;position:relative}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-search__button{border:1px solid #ccc;padding:.375em .625em}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table{margin:0 0 1em}.wp-block-table td,.wp-block-table th{word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video{margin:0 0 1em}.wp-block-template-part.has-background{margin-bottom:0;margin-top:0;padding:1.25em 2.375em}
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id="global-styles-inline-css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #FFFFFF;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--dark-gray: #28303D;--wp--preset--color--gray: #39414D;--wp--preset--color--green: #D1E4DD;--wp--preset--color--blue: #D1DFE4;--wp--preset--color--purple: #D1D1E4;--wp--preset--color--red: #E4D1D1;--wp--preset--color--orange: #E4DAD1;--wp--preset--color--yellow: #EEEADD;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--gradient--purple-to-yellow: linear-gradient(160deg, #D1D1E4 0%, #EEEADD 100%);--wp--preset--gradient--yellow-to-purple: linear-gradient(160deg, #EEEADD 0%, #D1D1E4 100%);--wp--preset--gradient--green-to-yellow: linear-gradient(160deg, #D1E4DD 0%, #EEEADD 100%);--wp--preset--gradient--yellow-to-green: linear-gradient(160deg, #EEEADD 0%, #D1E4DD 100%);--wp--preset--gradient--red-to-yellow: linear-gradient(160deg, #E4D1D1 0%, #EEEADD 100%);--wp--preset--gradient--yellow-to-red: linear-gradient(160deg, #EEEADD 0%, #E4D1D1 100%);--wp--preset--gradient--purple-to-red: linear-gradient(160deg, #D1D1E4 0%, #E4D1D1 100%);--wp--preset--gradient--red-to-purple: linear-gradient(160deg, #E4D1D1 0%, #D1D1E4 100%);--wp--preset--font-size--small: 18px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 24px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--extra-small: 16px;--wp--preset--font-size--normal: 20px;--wp--preset--font-size--extra-large: 40px;--wp--preset--font-size--huge: 96px;--wp--preset--font-size--gigantic: 144px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link data-minify="1" rel="stylesheet" id="contact-form-7-css" href="css/styles.css" media="all">
+<link data-minify="1" rel="stylesheet" id="twenty-twenty-one-style-css" href="css/style.css" media="all">
+<link rel="stylesheet" id="twenty-twenty-one-print-style-css" href="css/print.css" media="print">
+<link data-minify="1" rel="stylesheet" id="elementor-icons-css" href="css/elementor-icons.min.css" media="all">
+<link rel="stylesheet" id="elementor-frontend-css" href="css/frontend-lite.min_1.css" media="all">
+<link rel="stylesheet" id="swiper-css" href="css/swiper.min.css" media="all">
+<link rel="stylesheet" id="elementor-post-1806-css" href="css/post-1806.css" media="all">
+<link rel="stylesheet" id="elementor-pro-css" href="css/frontend-lite.min.css" media="all">
+<link data-minify="1" rel="stylesheet" id="font-awesome-5-all-css" href="css/all.min.css" media="all">
+<link rel="stylesheet" id="font-awesome-4-shim-css" href="css/v4-shims.min.css" media="all">
+<link rel="stylesheet" id="elementor-global-css" href="css/global.css" media="all">
+<link rel="stylesheet" id="elementor-post-24835-css" href="css/post-24835.css" media="all">
+<link rel="stylesheet" id="elementor-post-17720-css" href="css/post-17720.css" media="all">
+<style id="rocket-lazyload-inline-css">
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(images/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}.wp-embed-responsive .wp-has-aspect-ratio .rll-youtube-player{position:absolute;padding-bottom:0;width:100%;height:100%;top:0;bottom:0;left:0;right:0}
+</style>
+
+<link rel="stylesheet" id="elementor-icons-shared-0-css" href="css/fontawesome.min.css" media="all">
+<link data-minify="1" rel="stylesheet" id="elementor-icons-fa-solid-css" href="css/solid.min.css" media="all">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/jquery/jquery.min.js?ver=3.7.0" id="jquery-core-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.15.3" id="font-awesome-4-shim-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/pixelyoursite/dist/scripts/jquery.bind-first-0.2.3.min.js?ver=b83f79ee4c56df548cbba7f349d0a40b" id="jquery-bind-first-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/pixelyoursite/dist/scripts/js.cookie-2.1.3.min.js?ver=2.1.3" id="js-cookie-pys-js" defer></script>
+<script id="pys-js-extra">
+var pysOptions = {"staticEvents":{"facebook":{"init_event":[{"delay":0,"type":"static","name":"PageView","pixelIds":["1545893322272252"],"eventID":"313aa0ac-2010-46ad-8bcc-d7456d2880ec","params":{"page_title":"Hackeando as Mulheres","post_type":"page","post_id":24835,"plugin":"PixelYourSite","user_role":"guest","event_url":"oimperialista.com.br\/hm-3\/"},"e_id":"init_event","ids":[],"hasTimeWindow":false,"timeWindow":0,"woo_order":"","edd_order":""}]}},"dynamicEvents":{"automatic_event_form":{"facebook":{"delay":0,"type":"dyn","name":"Form","pixelIds":["1545893322272252"],"eventID":"545f4117-9f8e-46e9-8bd5-98990ad1e08b","params":{"page_title":"Hackeando as Mulheres","post_type":"page","post_id":24835,"plugin":"PixelYourSite","user_role":"guest","event_url":"oimperialista.com.br\/hm-3\/"},"e_id":"automatic_event_form","ids":[],"hasTimeWindow":false,"timeWindow":0,"woo_order":"","edd_order":""}},"automatic_event_download":{"facebook":{"delay":0,"type":"dyn","name":"Download","extensions":["","doc","exe","js","pdf","ppt","tgz","zip","xls"],"pixelIds":["1545893322272252"],"eventID":"a3239c61-3f21-4a0b-9041-f3b5be44afb2","params":{"page_title":"Hackeando as Mulheres","post_type":"page","post_id":24835,"plugin":"PixelYourSite","user_role":"guest","event_url":"oimperialista.com.br\/hm-3\/"},"e_id":"automatic_event_download","ids":[],"hasTimeWindow":false,"timeWindow":0,"woo_order":"","edd_order":""}},"automatic_event_comment":{"facebook":{"delay":0,"type":"dyn","name":"Comment","pixelIds":["1545893322272252"],"eventID":"9b666950-7b4e-4c84-9219-af95a2bf0b9a","params":{"page_title":"Hackeando as Mulheres","post_type":"page","post_id":24835,"plugin":"PixelYourSite","user_role":"guest","event_url":"oimperialista.com.br\/hm-3\/"},"e_id":"automatic_event_comment","ids":[],"hasTimeWindow":false,"timeWindow":0,"woo_order":"","edd_order":""}}},"triggerEvents":[],"triggerEventTypes":[],"facebook":{"pixelIds":["1545893322272252"],"advancedMatching":[],"removeMetadata":false,"contentParams":{"post_type":"page","post_id":24835,"content_name":"Hackeando as Mulheres"},"commentEventEnabled":true,"wooVariableAsSimple":false,"downloadEnabled":true,"formEventEnabled":true,"serverApiEnabled":true,"wooCRSendFromServer":false,"send_external_id":null},"debug":"","siteUrl":"https:\/\/oimperialista.com.br","ajaxUrl":"https:\/\/oimperialista.com.br\/wp-admin\/admin-ajax.php","ajax_event":"1a079e1ba6","enable_remove_download_url_param":"1","cookie_duration":"7","last_visit_duration":"60","enable_success_send_form":"","ajaxForServerEvent":"1","gdpr":{"ajax_enabled":false,"all_disabled_by_api":false,"facebook_disabled_by_api":false,"analytics_disabled_by_api":false,"google_ads_disabled_by_api":false,"pinterest_disabled_by_api":false,"bing_disabled_by_api":false,"externalID_disabled_by_api":false,"facebook_prior_consent_enabled":true,"analytics_prior_consent_enabled":true,"google_ads_prior_consent_enabled":null,"pinterest_prior_consent_enabled":true,"bing_prior_consent_enabled":true,"cookiebot_integration_enabled":false,"cookiebot_facebook_consent_category":"marketing","cookiebot_analytics_consent_category":"statistics","cookiebot_tiktok_consent_category":"marketing","cookiebot_google_ads_consent_category":null,"cookiebot_pinterest_consent_category":"marketing","cookiebot_bing_consent_category":"marketing","consent_magic_integration_enabled":false,"real_cookie_banner_integration_enabled":false,"cookie_notice_integration_enabled":false,"cookie_law_info_integration_enabled":false},"cookie":{"disabled_all_cookie":false,"disabled_advanced_form_data_cookie":false,"disabled_landing_page_cookie":false,"disabled_first_visit_cookie":false,"disabled_trafficsource_cookie":false,"disabled_utmTerms_cookie":false,"disabled_utmId_cookie":false},"woo":{"enabled":false},"edd":{"enabled":false}};
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://oimperialista.com.br/wp-content/cache/min/1/wp-content/plugins/pixelyoursite/dist/scripts/public.js?ver=1687458808" id="pys-js" defer></script>
+<link rel="https://api.w.org/" href="https://oimperialista.com.br/wp-json/"><link rel="alternate" type="application/json" href="https://oimperialista.com.br/wp-json/wp/v2/pages/24835"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://oimperialista.com.br/xmlrpc.php?rsd">
+<link rel="alternate" type="application/json+oembed" href="https://oimperialista.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Foimperialista.com.br%2Fhm-3%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://oimperialista.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Foimperialista.com.br%2Fhm-3%2F&format=xml">
+
+		<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+				window.rocketSplitTest = { 'config': { 'page': { 'base': { 'protocol': 'https://', 'host': 'oimperialista.com.br', 'path': '/' } } } };
+				window.rocketSplitTest.cookie = { };
+				window.rocketSplitTest.cookie.create = function (name, value, days) {
+					var date = new Date();
+					date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+					document.cookie = name + "=" + value + "; expires=" + date.toGMTString() + "; path=" + window.rocketSplitTest.config.page.base.path;
+				};
+				window.rocketSplitTest.cookie.read = function (name) {
+					var parts = ("; " + document.cookie).split("; " + name + "=");
+					return (parts.length === 2) ? parts.pop().split(";").shift() : null;
+				};
+		</script>
+
+		<meta name="generator" content="Elementor 3.15.3; features: e_dom_optimization, e_optimized_assets_loading, e_optimized_css_loading, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-auto">
+<!-- Google Tag Manager -->
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KHMNQ4L');</script>
+<!-- End Google Tag Manager -->
+<link rel="icon" href="images/cropped-Favicon-Oficial-Coroa-preta-32x32.png" sizes="32x32">
+<link rel="icon" href="images/cropped-Favicon-Oficial-Coroa-preta-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="images/cropped-Favicon-Oficial-Coroa-preta-180x180.png">
+<meta name="msapplication-TileImage" content="https://oimperialista.com.br/wp-content/uploads/2021/05/cropped-Favicon-Oficial-Coroa-preta-270x270.png">
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"></head>
+<body data-rsssl="1" class="page-template page-template-elementor_canvas page page-id-24835 wp-embed-responsive is-light-theme singular no-widgets elementor-default elementor-template-canvas elementor-kit-1806 elementor-page elementor-page-24835">
+			<div data-elementor-type="wp-page" data-elementor-id="24835" class="elementor elementor-24835" data-elementor-post-type="page">
+									<section class="elementor-section elementor-top-section elementor-element elementor-element-70931012 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="70931012" data-element_type="section" data-settings="{" background_background":"classic"}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5a0eee8a" data-id="5a0eee8a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-458817ae elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="458817ae" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-782328b2" data-id="782328b2" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-653e10c elementor-widget elementor-widget-html" data-id="653e10c" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<!-- Hotjar Tracking Code for https://oimperialista.com.br/hm-3 -->
+<script type="rocketlazyloadscript">
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3456499,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>		</div>
+				</div>
+				<div class="elementor-element elementor-element-53e9e002 elementor-widget elementor-widget-heading" data-id="53e9e002" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.15.0 - 20-08-2023 */
+.elementor-heading-title{padding:0;margin:0;line-height:1}.elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a{color:inherit;font-size:inherit;line-height:inherit}.elementor-widget-heading .elementor-heading-title.elementor-size-small{font-size:15px}.elementor-widget-heading .elementor-heading-title.elementor-size-medium{font-size:19px}.elementor-widget-heading .elementor-heading-title.elementor-size-large{font-size:29px}.elementor-widget-heading .elementor-heading-title.elementor-size-xl{font-size:39px}.elementor-widget-heading .elementor-heading-title.elementor-size-xxl{font-size:59px}</style><h1 class="elementor-heading-title elementor-size-default"><font color="#FF221D">  Manual da Mente Feminina </font> - Tudo que você precisa saber antes de se envolver com uma mulher </h1>		</div>
+				</div>
+				<div class="elementor-element elementor-element-11d3d3ee elementor-widget elementor-widget-text-editor" data-id="11d3d3ee" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.15.0 - 20-08-2023 */
+.elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:#69727d;color:#fff}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap{color:#69727d;border:3px solid;background-color:transparent}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap{margin-top:8px}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter{width:1em;height:1em}.elementor-widget-text-editor .elementor-drop-cap{float:left;text-align:center;line-height:1;font-size:50px}.elementor-widget-text-editor .elementor-drop-cap-letter{display:inline-block}</style>				<p>Qualquer mulher fica <strong>LOUCA</strong> quando conhece um cara que sabe mais dela do que ela mesma…</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-c601604 elementor-widget-mobile__width-initial elementor-widget elementor-widget-image" data-id="c601604" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.15.0 - 20-08-2023 */
+.elementor-widget-image{text-align:center}.elementor-widget-image a{display:inline-block}.elementor-widget-image a img[src$=".svg"]{width:48px}.elementor-widget-image img{vertical-align:middle;display:inline-block}</style>												<img width="565" height="586" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20565%20586&#x27;%3E%3C/svg%3E" title="Hackeando as mulheres livro o imperialista" alt="hackeando as mulheres" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2022/12/MOCKUP-Hackeando-as-Mulheres-BLOG2-2.png"><noscript><img width="565" height="586" decoding="async" src="images/MOCKUP-Hackeando-as-Mulheres-BLOG2-2.png" title="Hackeando as mulheres livro o imperialista" alt="hackeando as mulheres" loading="lazy"></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-59201ee elementor-widget elementor-widget-text-editor" data-id="59201ee" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Obtenha um mapa completo (e comprovado) da mente feminina, e use isso para conquistar a mulher que você quiser:</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-2c8fd537 elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="2c8fd537" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-lg elementor-animation-grow" href="#oferta">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">QUERO O LIVRO</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-56b51ed6 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="56b51ed6" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5c77a53a" data-id="5c77a53a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-79587238 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="79587238" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-17b61316" data-id="17b61316" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4ac72661 elementor-widget elementor-widget-image" data-id="4ac72661" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" fetchpriority="high" width="300" height="300" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20300%20300&#x27;%3E%3C/svg%3E" class="attachment-full size-full wp-image-25255" alt data-lazy-srcset="https://oimperialista.com.br/wp-content/uploads/2023/05/19-300x300-1.jpg 300w, https://oimperialista.com.br/wp-content/uploads/2023/05/19-300x300-1-150x150.jpg 150w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" style="width:100%;height:100%;max-width:300px" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2023/05/19-300x300-1.jpg"><noscript><img decoding="async" fetchpriority="high" width="300" height="300" src="images/19-300x300-1.jpg" class="attachment-full size-full wp-image-25255" alt srcset="images/19-300x300-1.jpg 300w, images/19-300x300-1-150x150.jpg 150w" sizes="(max-width: 300px) 100vw, 300px" style="width:100%;height:100%;max-width:300px"></noscript>															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-5069b40c" data-id="5069b40c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-50b4ab6c elementor-widget elementor-widget-heading" data-id="50b4ab6c" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Você <font color="#FF221D">NÃO</font> dirige um carro sem saber como o carro funciona…</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-25f0a1f elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="25f0a1f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Você <strong><span style="color: #ff0000;">NÃO</span></strong> tem sucesso nos negócios sem saber como os negócios funcionam…</p><p><br></p><p>E você <strong><span style="color: #ff0000;">NÃO</span></strong> vai conquistar uma mulher sem saber como a mente delas funciona!</p><p><br></p><p>E é por não entender a psicologia feminina que você passa por situações como:</p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-947df7b elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="947df7b" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4696575a" data-id="4696575a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-4efc3f12 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="4efc3f12" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-572ad9fd" data-id="572ad9fd" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-72b6bef elementor-align-left elementor-tablet-align-center elementor-mobile-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="72b6bef" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+			<link rel="stylesheet" href="css/widget-icon-list.min.css">		<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-times"></i>						</span>
+										<span class="elementor-icon-list-text">Tomar bolo em encontros e ser enrolado por elas</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-times"></i>						</span>
+										<span class="elementor-icon-list-text">Ficar triste, achando que “não tem sorte” no amor</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-times"></i>						</span>
+										<span class="elementor-icon-list-text">Se sente inseguro ao falar com uma mulher</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-b54e504" data-id="b54e504" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-26c5e83 elementor-align-left elementor-tablet-align-center elementor-mobile-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="26c5e83" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-times"></i>						</span>
+										<span class="elementor-icon-list-text">Cai na Friendzone e não sabe criar o clima para o beijo</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-times"></i>						</span>
+										<span class="elementor-icon-list-text">A mulher perde o interesse por você e fica “seca” do nada</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-times"></i>						</span>
+										<span class="elementor-icon-list-text">Elas te veem como “bonzinho”, sem atitude e liderança</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<div class="elementor-element elementor-element-2643177 elementor-widget elementor-widget-text-editor" data-id="2643177" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p> </p><p>Eu descobri da <b><u>pior forma</u></b> que pra acabar com tudo isso, você não precisa <b><u>esperar ANOS</u></b> até ficar rico ou ter o shape dos sonhos…</p><p> </p><p>Nem apelar para apps tipo <b><u>Tinder</u></b>, decorar <b><u>cantadas prontas</u></b> ou torrar dinheiro indo pra <b><u>baladas</u></b>.</p><p><span style="letter-spacing: -0.3px;"> </span></p><p><span style="letter-spacing: -0.3px;">Você só precisa do conhecimento que você está prestes a obter.</span></p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-8bd30ed elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8bd30ed" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-b63f126" data-id="b63f126" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-9193895 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="9193895" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-9c6ecd3" data-id="9c6ecd3" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-06d8780 elementor-widget elementor-widget-heading" data-id="06d8780" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">O que é o <font color="#FF221D">Hackeando as Mulheres?</font></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-b91ff8c elementor-hidden-desktop elementor-widget elementor-widget-image" data-id="b91ff8c" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="648" height="648" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20648%20648&#x27;%3E%3C/svg%3E" class="attachment-full size-full wp-image-22953" alt data-lazy-srcset="https://oimperialista.com.br/wp-content/uploads/2023/01/2-Entender-a-psicologia-feminina.jpg 648w, https://oimperialista.com.br/wp-content/uploads/2023/01/2-Entender-a-psicologia-feminina-300x300.jpg 300w, https://oimperialista.com.br/wp-content/uploads/2023/01/2-Entender-a-psicologia-feminina-150x150.jpg 150w" data-lazy-sizes="(max-width: 648px) 100vw, 648px" style="width:100%;height:100%;max-width:648px" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2023/01/2-Entender-a-psicologia-feminina.jpg"><noscript><img decoding="async" width="648" height="648" src="images/2-Entender-a-psicologia-feminina.jpg" class="attachment-full size-full wp-image-22953" alt srcset="images/2-Entender-a-psicologia-feminina.jpg 648w, images/2-Entender-a-psicologia-feminina-300x300.jpg 300w, images/2-Entender-a-psicologia-feminina-150x150.jpg 150w" sizes="(max-width: 648px) 100vw, 648px" style="width:100%;height:100%;max-width:648px"></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-629dd5f elementor-widget elementor-widget-text-editor" data-id="629dd5f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>É um mapa completo da mente feminina, com informações comprovadas do que as mulheres desejam instintivamente, mas NUNCA assumiriam</p><p> </p><p>ISSO explica porque ela diz que quer um homem romântico e atencioso… </p><p> </p><p>Mas vive <b><u>correndo atrás</u></b> de um <b><u>cafajeste</u></b>.</p><p> </p><p>Com esse conhecimento em mãos…</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-1bf95ca elementor-widget elementor-widget-text-editor" data-id="1bf95ca" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Você conquistará o coração e a mente da mulher que você desejar, deixando-a emocionalmente obcecada por você.</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-5fc0534 elementor-widget elementor-widget-text-editor" data-id="5fc0534" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Ela é mais velha que você? Mais nova? Muito bonita? Patricinha? Não importa!</p><p> </p><p>A biologia por trás da atração é uma só, e você está prestes a dominá-la e revolucionar sua vida amorosa.</p><p> </p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-9f79417" data-id="9f79417" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-9abf7b2 elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-image" data-id="9abf7b2" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="648" height="648" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20648%20648&#x27;%3E%3C/svg%3E" class="attachment-full size-full wp-image-22953" alt data-lazy-srcset="https://oimperialista.com.br/wp-content/uploads/2023/01/2-Entender-a-psicologia-feminina.jpg 648w, https://oimperialista.com.br/wp-content/uploads/2023/01/2-Entender-a-psicologia-feminina-300x300.jpg 300w, https://oimperialista.com.br/wp-content/uploads/2023/01/2-Entender-a-psicologia-feminina-150x150.jpg 150w" data-lazy-sizes="(max-width: 648px) 100vw, 648px" style="width:100%;height:100%;max-width:648px" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2023/01/2-Entender-a-psicologia-feminina.jpg"><noscript><img decoding="async" width="648" height="648" src="images/2-Entender-a-psicologia-feminina.jpg" class="attachment-full size-full wp-image-22953" alt srcset="images/2-Entender-a-psicologia-feminina.jpg 648w, images/2-Entender-a-psicologia-feminina-300x300.jpg 300w, images/2-Entender-a-psicologia-feminina-150x150.jpg 150w" sizes="(max-width: 648px) 100vw, 648px" style="width:100%;height:100%;max-width:648px"></noscript>															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<div class="elementor-element elementor-element-fd07773 elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="fd07773" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-lg elementor-animation-grow" href="#oferta">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">quero o livro</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-776c2bb6 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="776c2bb6" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-259414fe" data-id="259414fe" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-67bb5a90 elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="67bb5a90" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-51b7668a" data-id="51b7668a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-1408301b elementor-widget elementor-widget-image" data-id="1408301b" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="1621" height="1762" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%201621%201762&#x27;%3E%3C/svg%3E" class="attachment-full size-full wp-image-23765" alt data-lazy-srcset="https://oimperialista.com.br/wp-content/uploads/2023/03/Assunto-1.webp 1621w, https://oimperialista.com.br/wp-content/uploads/2023/03/Assunto-1-276x300.webp 276w, https://oimperialista.com.br/wp-content/uploads/2023/03/Assunto-1-942x1024.webp 942w, https://oimperialista.com.br/wp-content/uploads/2023/03/Assunto-1-768x835.webp 768w, https://oimperialista.com.br/wp-content/uploads/2023/03/Assunto-1-1413x1536.webp 1413w, https://oimperialista.com.br/wp-content/uploads/2023/03/Assunto-1-1568x1704.webp 1568w" data-lazy-sizes="(max-width: 1621px) 100vw, 1621px" style="width:100%;height:108.7%;max-width:1621px" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2023/03/Assunto-1.webp"><noscript><img decoding="async" width="1621" height="1762" src="images/Assunto-1.webp" class="attachment-full size-full wp-image-23765" alt srcset="images/Assunto-1.webp 1621w, images/Assunto-1-276x300.webp 276w, images/Assunto-1-942x1024.webp 942w, images/Assunto-1-768x835.webp 768w, images/Assunto-1-1413x1536.webp 1413w, images/Assunto-1-1568x1704.webp 1568w" sizes="(max-width: 1621px) 100vw, 1621px" style="width:100%;height:108.7%;max-width:1621px"></noscript>															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-bb4c836" data-id="bb4c836" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-346b2f10 elementor-widget elementor-widget-heading" data-id="346b2f10" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><font color="#FF221D">Atenção:</font> Não use com casadas!</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-1b3956fe elementor-widget elementor-widget-text-editor" data-id="1b3956fe" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Sim, o conhecimento que você vai obter te permitirá seduzir até mesmo mulheres comprometidas.</p><p> </p><p>Mas eu peço que use com responsabilidade e não aplique esse conteúdo de maneira errada. Fica o aviso.</p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-c778dfc elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="c778dfc" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-415f46d" data-id="415f46d" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-a84f905 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="a84f905" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-084c97c" data-id="084c97c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-b8d624d elementor-widget elementor-widget-heading" data-id="b8d624d" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><font color="#FF221D">+</font> Leve o audiobook bônus gratuitamente!</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-78b99db elementor-widget elementor-widget-image" data-id="78b99db" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="1920" height="1039" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%201920%201039&#x27;%3E%3C/svg%3E" title="audiobook 5 verdades obscuras sobre as mulheres" alt="audiobook 5 verdades obscuras sobre as mulheres" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2022/05/audiobook-5-verdades-obscuras-sobre-as-mulheres.webp"><noscript><img width="1920" height="1039" decoding="async" src="images/audiobook-5-verdades-obscuras-sobre-as-mulheres.webp" title="audiobook 5 verdades obscuras sobre as mulheres" alt="audiobook 5 verdades obscuras sobre as mulheres" loading="lazy"></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-1e8a6a1 elementor-widget elementor-widget-text-editor" data-id="1e8a6a1" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Sem tem tempo pra ler? Não gosta de livros digitais? Sem problemas!</p><p> </p><p>Adquirindo o Livro Digital <strong>ainda hoje</strong> você ganha gratuitamente o áudiobook!</p><p> </p><p>Ouça na academia, lavando louça, indo pro trabalho e etc</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-c9eacb1 elementor-widget elementor-widget-heading" data-id="c9eacb1" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><font color="#FF221D">+1 BÔNUS:</font>  6 Hacks de Linguagem Corporal</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-b10fca9 elementor-widget elementor-widget-image" data-id="b10fca9" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="968" height="1348" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20968%201348&#x27;%3E%3C/svg%3E" title="Novo bônus hack linguagem corporal" alt="Novo bônus hack linguagem corporal" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2023/07/Novo-bonus-hack-linguagem-corporal.png"><noscript><img width="968" height="1348" decoding="async" src="images/Novo-bonus-hack-linguagem-corporal.png" title="Novo bônus hack linguagem corporal" alt="Novo bônus hack linguagem corporal" loading="lazy"></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-fb7e72b elementor-widget elementor-widget-text-editor" data-id="fb7e72b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Sabe como as mulheres diferenciam um homem confiante, com atitude e liderança, de um bonzinho, sem valor? Através da <strong>POSTURA!</strong></p><p> </p><p>Por isso, após ver esse aulão gratuito para leitores, você será visto por elas como um homem de alto valor sem nem dizer uma palavra!</p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<div class="elementor-element elementor-element-251bb17 elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="251bb17" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-lg elementor-animation-grow" href="#oferta">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">ACESSAR ENQUANTO AINDA ESTÁ DISPONÍVEL</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-21f34d7 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="21f34d7" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1b5071e" data-id="1b5071e" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-ec072fa elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="ec072fa" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-9ba9a8d" data-id="9ba9a8d" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-aec92bb elementor-widget elementor-widget-heading" data-id="aec92bb" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Alguns dos benefícios que você terá após ler o <font color="#FF221D">Hackeando as Mulheres:</font>  </h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-3fb713b elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3fb713b" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-fa25189" data-id="fa25189" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-84121e8 elementor-align-left elementor-tablet-align-center elementor-mobile-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="84121e8" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check"></i>						</span>
+										<span class="elementor-icon-list-text"><u>Gatilhos mentais</u> que geram atração em qualquer mulher MESMO que você tenha menos de 1,7m e não seja bonito</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check"></i>						</span>
+										<span class="elementor-icon-list-text">Atitudes que elas ADORAM em um homem (mas nunca assumem) e como adotá-las</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check"></i>						</span>
+										<span class="elementor-icon-list-text">Imagine o <u>prazer</u> de saber como fazer suas amigas serem mais do que amigas.</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check"></i>						</span>
+										<span class="elementor-icon-list-text">Nunca mais se sinta inferior e impotente perto de uma mulher</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-27fb5b9" data-id="27fb5b9" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-84fb103 elementor-align-left elementor-tablet-align-center elementor-mobile-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="84fb103" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check"></i>						</span>
+										<span class="elementor-icon-list-text">10 comportamentos que te fazer ser um homem "bonzinho" e como eliminá-los em menos de 1 mês</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check"></i>						</span>
+										<span class="elementor-icon-list-text">O segredo que te IMPEDE de fazer uma mulher se atrair por ti</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check"></i>						</span>
+										<span class="elementor-icon-list-text">Você se sentirá o cara mais foda do mundo quando ver que elas NUNCA perdem o interesse por ti</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check"></i>						</span>
+										<span class="elementor-icon-list-text">Supere os testes dela gerando ainda mais atração e desejo</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-17351dc1 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="17351dc1" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1e23875f" data-id="1e23875f" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-bf0d4a8 elementor-hidden-desktop elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="bf0d4a8" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-7d95961" data-id="7d95961" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-534a7941 elementor-widget elementor-widget-heading" data-id="534a7941" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Você <font color="#FF221D">não precisa </font> acreditar em mim...</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-45687e98 elementor-widget elementor-widget-text-editor" data-id="45687e98" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Simplesmente veja o que os leitores costumam me mandar ao aplicar o conteúdo:</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-2adf21f2 elementor-skin-carousel elementor-arrows-yes elementor-pagination-type-bullets elementor-pagination-position-outside elementor-widget elementor-widget-media-carousel" data-id="2adf21f2" data-element_type="widget" data-settings="{" slides_per_view":"2","space_between":{"unit":"px","size":11,"sizes":[]},"slides_per_view_mobile":"1","skin":"carousel","effect":"slide","show_arrows":"yes","pagination":"bullets","speed":500,"autoplay":"yes","autoplay_speed":5000,"loop":"yes","pause_on_hover":"yes","pause_on_interaction":"yes","space_between_tablet":{"unit":"px","size":10,"sizes":[]},"space_between_mobile":{"unit":"px","size":10,"sizes":[]}}" data-widget_type="media-carousel.default">
+				<div class="elementor-widget-container">
+			<link rel="stylesheet" href="css/widget-carousel.min.css">		<div class="elementor-swiper">
+			<div class="elementor-main-swiper swiper-container">
+				<div class="swiper-wrapper">
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/27-mostrar-junto-com-o-28.jpg" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 1 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/DEPOIMENTO-PT-1.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 2 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/DEPOIMENTO-PT-2.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 3 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-11.jpg" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 4 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-12.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 5 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-20.jpg" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 6 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-30.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 7 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-34.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 8 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+									</div>
+															<div class="swiper-pagination"></div>
+																<div class="elementor-swiper-button elementor-swiper-button-prev" role="button" tabindex="0">
+							<i aria-hidden="true" class="eicon-chevron-left"></i>							<span class="elementor-screen-only">Anterior</span>
+						</div>
+						<div class="elementor-swiper-button elementor-swiper-button-next" role="button" tabindex="0">
+							<i aria-hidden="true" class="eicon-chevron-right"></i>							<span class="elementor-screen-only">Próximo</span>
+						</div>
+												</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-603b9e12 elementor-align-left elementor-tablet-align-center elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="603b9e12" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-plus-circle"></i>						</span>
+										<span class="elementor-icon-list-text">de 4 mil alunos.</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-plus-circle"></i>						</span>
+										<span class="elementor-icon-list-text">de 120 mil seguidores.</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">O método mais eficaz já feito.</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-1b280904 elementor-align-left elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="1b280904" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-lg elementor-animation-grow" href="#oferta">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">QUERO FAZER PARTE DESSA IRMANDADE</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-a4b02f7 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="a4b02f7" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-705cc217" data-id="705cc217" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-78c90161 elementor-hidden-tablet elementor-hidden-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="78c90161" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-396e7881" data-id="396e7881" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4a7d1eeb elementor-widget elementor-widget-heading" data-id="4a7d1eeb" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Você <font color="#FF221D">não precisa </font> acreditar em mim...</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-6695b03e elementor-widget elementor-widget-text-editor" data-id="6695b03e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Simplesmente veja o que os leitores costumam me mandar ao aplicar o conteúdo:</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-48700fc2 elementor-align-left elementor-tablet-align-center elementor-mobile-align-left elementor-hidden-tablet elementor-hidden-mobile elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="48700fc2" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-plus-circle"></i>						</span>
+										<span class="elementor-icon-list-text">de 4 mil alunos.</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-plus-circle"></i>						</span>
+										<span class="elementor-icon-list-text">de 120 mil seguidores.</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">O método mais eficaz já feito.</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-d683c6a elementor-align-left elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="d683c6a" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-lg elementor-animation-grow" href="#oferta">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">QUERO FAZER PARTE DESSA IRMANDADE</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-7e99e5a1" data-id="7e99e5a1" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-12cc574f elementor-skin-carousel elementor-arrows-yes elementor-pagination-type-bullets elementor-pagination-position-outside elementor-widget elementor-widget-media-carousel" data-id="12cc574f" data-element_type="widget" data-settings="{" slides_per_view":"2","space_between":{"unit":"px","size":11,"sizes":[]},"slides_per_view_mobile":"1","skin":"carousel","effect":"slide","show_arrows":"yes","pagination":"bullets","speed":500,"autoplay":"yes","autoplay_speed":5000,"loop":"yes","pause_on_hover":"yes","pause_on_interaction":"yes","space_between_tablet":{"unit":"px","size":10,"sizes":[]},"space_between_mobile":{"unit":"px","size":10,"sizes":[]}}" data-widget_type="media-carousel.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-swiper">
+			<div class="elementor-main-swiper swiper-container">
+				<div class="swiper-wrapper">
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/27-mostrar-junto-com-o-28.jpg" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 1 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/DEPOIMENTO-PT-1.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 2 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/DEPOIMENTO-PT-2.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 3 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-11.jpg" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 4 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-12.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 5 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-20.jpg" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 6 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-30.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 7 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+											<div class="swiper-slide">
+									<div data-bg="https://oimperialista.com.br/wp-content/uploads/2022/12/Copia-de-34.png" class="elementor-carousel-image rocket-lazyload" role="img" aria-label="Depoimento 8 hackeando as mulheres" style>
+
+			
+					</div>
+								</div>
+									</div>
+															<div class="swiper-pagination"></div>
+																<div class="elementor-swiper-button elementor-swiper-button-prev" role="button" tabindex="0">
+							<i aria-hidden="true" class="eicon-chevron-left"></i>							<span class="elementor-screen-only">Anterior</span>
+						</div>
+						<div class="elementor-swiper-button elementor-swiper-button-next" role="button" tabindex="0">
+							<i aria-hidden="true" class="eicon-chevron-right"></i>							<span class="elementor-screen-only">Próximo</span>
+						</div>
+												</div>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-683c3d1 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="683c3d1" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5a03d73" data-id="5a03d73" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-f7493d8 elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="f7493d8" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-719569b" data-id="719569b" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-05f4b10 elementor-widget elementor-widget-heading" data-id="05f4b10" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Essa será sua <font color="#FF221D">Transformação</font>  </h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-c8c335a elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="c8c335a" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-6be7d88" data-id="6be7d88" data-element_type="column" data-settings="{" background_background":"classic"}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+					<div class="elementor-background-overlay"></div>
+								<div class="elementor-element elementor-element-6173a78 elementor-widget elementor-widget-heading" data-id="6173a78" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="background-color: #ce0400; padding-right: 12px; padding-left: 12px; padding-top: 2px; padding-bottom: 2px;  border-radius: 25px">ANTES DA LEITURA:</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-05fbfa3 elementor-widget elementor-widget-text-editor" data-id="05fbfa3" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>❌ As mulheres te enrolam e te dão bolo em encontros;</p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">❌ Passa finais de semana sozinho, sem pegar ninguém;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">❌ Tem que beber álcool pra criar uma falsa confiança;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">❌ Não sabe ler sinais delas e é sempre descalibrado;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">❌Perde tempo com Tinder;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">❌ Decora frases prontas que nunca funcionam.</span></p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-e216ed3" data-id="e216ed3" data-element_type="column" data-settings="{" background_background":"classic"}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+					<div class="elementor-background-overlay"></div>
+								<div class="elementor-element elementor-element-3a5cb3b elementor-widget elementor-widget-heading" data-id="3a5cb3b" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="background-color: #002775; padding-right: 6px; padding-left: 6px; padding-top: 2px; padding-bottom: 2px;  border-radius: 25px">DURANTE A LEITURA:</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-4fa52e2 elementor-widget elementor-widget-text-editor" data-id="4fa52e2" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>🔷 Começa a ouvir coisas do tipo “nossa, você está diferente”;</p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">🔷 Não se sente mais inseguro;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">🔷 Vê que não precisa esperar ANOS até ter o shape dos sonhos e ser rico para conquistar lindas mulheres;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">🔷 Elas começam a enxergá-lo como prioridade, e não como opção;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">🔷 Sabe flertar do jeito certo;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">🔷 Começa a saber como agir perante a toda situação com elas</span><span style="letter-spacing: 0px;">.</span></p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-b849112" data-id="b849112" data-element_type="column" data-settings="{" background_background":"classic"}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+					<div class="elementor-background-overlay"></div>
+								<div class="elementor-element elementor-element-3d58099 elementor-widget elementor-widget-heading" data-id="3d58099" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="background-color: #000000; padding-right: 12px; padding-left: 12px; padding-top: 2px; padding-bottom: 2px;  border-radius: 25px">DEPOIS DA LEITURA:</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-169921f elementor-widget elementor-widget-text-editor" data-id="169921f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>✅ Está sempre um passo a frente da mulher, fazendo-a achar que você está lendo a mente dela;</p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">✅ Ela te vê como o <b><u>ÚNICO </u></b>homem que a conhece e a entende;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">✅ Conquista até mesmo mulheres “patricinhas” através da sua ambição e energia masculina;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">✅ Outros homens vão dizer que você tem “sorte” no amor…</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">✅ Inverte o jogo e faz as MULHERES investirem e correrem atrás de você;</span></p><p><span style="letter-spacing: 0px;"> </span></p><p><span style="letter-spacing: 0px;">✅ Nenhuma mulher é “difícil” demais pra você.</span></p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-1d9d996 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1d9d996" data-element_type="section" id="oferta">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-dbf9f75" data-id="dbf9f75" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-d8a5943 elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="d8a5943" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-2d368e5" data-id="2d368e5" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-25a276cf elementor-widget elementor-widget-heading" data-id="25a276cf" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Qual o investimento necessário para Hackear a mente de <font color="#FF221D">Qualquer Mulher?</font></h2><font color="#FF221D">		</font></div><font color="#FF221D">
+				</font></div><font color="#FF221D">
+					</font></div><font color="#FF221D">
+		</font></div><font color="#FF221D">
+							</font></div><font color="#FF221D">
+		</font></section><font color="#FF221D">
+				<div class="elementor-element elementor-element-e84aec8 elementor-widget elementor-widget-text-editor" data-id="e84aec8" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Eu gastei facilmente mais de R$10.000,00 em cursos, livros e mentorias pra obter todo o conhecimento sobre Psicologia Feminina que coloquei dentro do Livro Digital que você vai obter.</p><p> </p><p>Além disso, aposto que você já gastou (ou gasta) muito mais tempo e dinheiro com:</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-20eda5f4 elementor-align-left elementor-mobile-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="20eda5f4" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-exclamation-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Baladas</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-exclamation-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Encontros que não dão certo</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-exclamation-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Tinder</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-exclamation-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Treinamentos caros que te ensinam a correr atrás de mulher</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-00b5c8d elementor-widget elementor-widget-text-editor" data-id="00b5c8d" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Por que continuar torrando seu suado dinheiro com tudo isso, se você pode obter um mapa prático da mente feminina agora mesmo por <strong>R$19,90</strong>?</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-4fc1a0e9 elementor-widget elementor-widget-text-editor" data-id="4fc1a0e9" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Sim, foi isso mesmo que você leu:</p>						</div>
+				</div>
+					</font></div><font color="#FF221D">
+		</font></div><font color="#FF221D">
+							</font></div><font color="#FF221D">
+		</font></section><font color="#FF221D">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-f2458a8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f2458a8" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9c0a2fa" data-id="9c0a2fa" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-19f0de29 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="19f0de29" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-4f14d716" data-id="4f14d716" data-element_type="column" id="compra" data-settings="{" background_background":"gradient"}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-720dfdf elementor-widget elementor-widget-text-editor" data-id="720dfdf" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>De <del>R$<strong>97,00</strong></del> por apenas:</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-3c539abd elementor-widget elementor-widget-heading" data-id="3c539abd" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">R$19,90</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-54d00e7 elementor-align-left elementor-mobile-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="54d00e7" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Livro Digital Hackeando as Mulheres</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Bônus - Áudiobook com comentários e conhecimentos complementares</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Bônus - Aulão "6 Hacks Fodidos de Linguagem Corporal"</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Acesso vitalício (pra sempre) e imediato via email</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Garantia de 7 dias (e você ainda fica com o ebook)</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-1bf9e904 elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="1bf9e904" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-lg elementor-animation-grow" href="https://pay.kiwify.com.br/1kigPpn">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">COMPRAR AGORA COM DESCONTO</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-2c70e7c9 elementor-widget elementor-widget-image" data-id="2c70e7c9" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="1024" height="87" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%201024%2087&#x27;%3E%3C/svg%3E" class="attachment-full size-full wp-image-20621" alt data-lazy-srcset="https://oimperialista.com.br/wp-content/uploads/2022/10/cartoes-branco.png 1024w, https://oimperialista.com.br/wp-content/uploads/2022/10/cartoes-branco-300x25.png 300w, https://oimperialista.com.br/wp-content/uploads/2022/10/cartoes-branco-768x65.png 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" style="width:100%;height:8.5%;max-width:1024px" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2022/10/cartoes-branco.png"><noscript><img decoding="async" width="1024" height="87" src="images/cartoes-branco.png" class="attachment-full size-full wp-image-20621" alt srcset="images/cartoes-branco.png 1024w, images/cartoes-branco-300x25.png 300w, images/cartoes-branco-768x65.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" style="width:100%;height:8.5%;max-width:1024px"></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-6350ff17 elementor-align-center elementor-icon-list--layout-inline elementor-mobile-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="6350ff17" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-lock"></i>						</span>
+										<span class="elementor-icon-list-text">Compra 100% Segura</span>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">7 Dias de Garantia</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-0fe896a elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0fe896a" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-0fba926" data-id="0fba926" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-427b0a8 elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="427b0a8" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-4530241" data-id="4530241" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-cd67359 elementor-widget elementor-widget-image" data-id="cd67359" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="500" height="500" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20500%20500&#x27;%3E%3C/svg%3E" class="attachment-full size-full wp-image-18050" alt="Gatilhos mentais para conquistar mulheres" data-lazy-srcset="https://oimperialista.com.br/wp-content/uploads/2022/06/gatilhos-mentais-para-conquistar-uma-mulher.jpg 500w, https://oimperialista.com.br/wp-content/uploads/2022/06/gatilhos-mentais-para-conquistar-uma-mulher-300x300.jpg 300w, https://oimperialista.com.br/wp-content/uploads/2022/06/gatilhos-mentais-para-conquistar-uma-mulher-150x150.jpg 150w" data-lazy-sizes="(max-width: 500px) 100vw, 500px" style="width:100%;height:100%;max-width:500px" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2022/06/gatilhos-mentais-para-conquistar-uma-mulher.jpg"><noscript><img decoding="async" width="500" height="500" src="images/gatilhos-mentais-para-conquistar-uma-mulher.jpg" class="attachment-full size-full wp-image-18050" alt="Gatilhos mentais para conquistar mulheres" srcset="images/gatilhos-mentais-para-conquistar-uma-mulher.jpg 500w, images/gatilhos-mentais-para-conquistar-uma-mulher-300x300.jpg 300w, images/gatilhos-mentais-para-conquistar-uma-mulher-150x150.jpg 150w" sizes="(max-width: 500px) 100vw, 500px" style="width:100%;height:100%;max-width:500px"></noscript>															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ed9d96c" data-id="ed9d96c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-811436c elementor-widget elementor-widget-heading" data-id="811436c" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><font color="#FF221D">POR QUE TÃO BARATO?</font></h2><font color="#FF221D">		</font></div><font color="#FF221D">
+				</font></div><font color="#FF221D">
+				<div class="elementor-element elementor-element-2da8a14 elementor-widget elementor-widget-text-editor" data-id="2da8a14" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><b>Existem 2 razões</b>:</p><p> </p><p><span style="text-decoration-line: underline; color: #ff221d;"><b>PRIMEIRA:</b></span> Eu cansei de ver conteúdos de má qualidade sendo vendidos por um preço alto, então decidi criar meu próprio método para que você não precise pagar uma fortuna para mudar de vida. </p><p> </p><p>Por isso eu entrego <strong>10X MAIS CONTEÚDO</strong> do que o valor cobrado.</p><p> </p><p><span style="font-weight: bold; color: #ff221d;"><u>SEGUNDA:</u> </span><b>Eu não sou ganancioso.</b> Muitos estão nesse mercado apenas para ganhar dinheiro, sem o compromisso de realmente te ajudar.</p><p> </p><p>Eu só irei cobrar de você os gastos que eu tive com a produção do conteúdo e para manter essa página no ar.</p>						</div>
+				</div>
+					</font></div><font color="#FF221D">
+		</font></div><font color="#FF221D">
+							</font></div><font color="#FF221D">
+		</font></section><font color="#FF221D">
+					</font></div><font color="#FF221D">
+		</font></div><font color="#FF221D">
+							</font></div><font color="#FF221D">
+		</font></section><font color="#FF221D">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-2a2849a9 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2a2849a9" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-44c2caf6" data-id="44c2caf6" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-85cb1f7 elementor-section-content-middle elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="85cb1f7" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-356d1c8b" data-id="356d1c8b" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-6363371c elementor-widget elementor-widget-heading" data-id="6363371c" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><font color="#FF221D">AUTOR</font> - BRUNO COSTA</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-3522cd7f elementor-widget elementor-widget-text-editor" data-id="3522cd7f" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Bruno, Especialista em Inteligência Social, Psicologia Feminina e Criador de uma das maiores empresas de Desenvolvimento Masculino do Brasil – O Imperialista, com + de 200 mil seguidores, passou por uma fase em que sua única fonte de prazer eram filmes adultos…</p><p> </p><p>Já que não conseguia conquistar mulheres reais.</p><p> </p><p>Sua vida amorosa era frustrante e sem esperança. Mas após muito estudo, prática e investimento, sua situação mudou.</p><p> </p><p>Agora, sua missão é ajudar homens como você, levando conhecimento para o máximo de homens possível, criando uma Irmandade de Imperadores do mundo moderno.</p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-43020540" data-id="43020540" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-68964ba3 elementor-widget elementor-widget-image" data-id="68964ba3" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="600" height="503" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20600%20503&#x27;%3E%3C/svg%3E" class="attachment-full size-full wp-image-22957" alt="Hackeando as Mulheres" data-lazy-srcset="https://oimperialista.com.br/wp-content/uploads/2023/01/6-Bruno-Costa-Imperialista.png 600w, https://oimperialista.com.br/wp-content/uploads/2023/01/6-Bruno-Costa-Imperialista-300x252.png 300w" data-lazy-sizes="(max-width: 600px) 100vw, 600px" style="width:100%;height:83.83%;max-width:600px" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2023/01/6-Bruno-Costa-Imperialista.png"><noscript><img decoding="async" width="600" height="503" src="images/6-Bruno-Costa-Imperialista.png" class="attachment-full size-full wp-image-22957" alt="Hackeando as Mulheres" srcset="images/6-Bruno-Costa-Imperialista.png 600w, images/6-Bruno-Costa-Imperialista-300x252.png 300w" sizes="(max-width: 600px) 100vw, 600px" style="width:100%;height:83.83%;max-width:600px"></noscript>															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-58e91ecd elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="58e91ecd" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5da4809e" data-id="5da4809e" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-30b856dd elementor-widget elementor-widget-heading" data-id="30b856dd" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><font color="#F5F5F5">COMPRA</font> 100% SEGURA<font color="#F5F5F5">, FIQUE TRANQUILO...</font></h2>		</div>
+				</div>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-17221c0d elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="17221c0d" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-6012b983" data-id="6012b983" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-35bb4798 elementor-widget elementor-widget-text-editor" data-id="35bb4798" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<span style="font-weight: 400;"><strong>Para te provar o valor e a confiança</strong> que eu tenho no meu conteúdo, vou te oferecer <span style="color: #ff221d;"><strong>7 dias de Garantia Incondicional</strong></span>.</span>
+<br>
+<br>
+Ou seja, se você adquirir o meu treinamento e não gostar, no prazo de até 7 dias <span style="color: #ff221d;"><strong>eu te devolverei CADA CENTAVO</strong> </span>que você investiu, Simples e fácil!
+<br>
+<br>
+É só você mandar um email para <strong>suporteoimperialista@gmail.com</strong>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-b5aab25" data-id="b5aab25" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4e0f9a88 elementor-widget elementor-widget-image" data-id="4e0f9a88" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="400" height="400" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20viewBox=&#x27;0%200%20400%20400&#x27;%3E%3C/svg%3E" title="Hackeando as mulheres garantia" alt="Garantia hackeando as mulheres" data-lazy-src="https://oimperialista.com.br/wp-content/uploads/2023/01/Garantia-hm.png"><noscript><img width="400" height="400" decoding="async" src="images/Garantia-hm.png" title="Hackeando as mulheres garantia" alt="Garantia hackeando as mulheres" loading="lazy"></noscript>															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<div class="elementor-element elementor-element-41ee431b elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="41ee431b" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-lg elementor-animation-grow" href="https://pay.kiwify.com.br/1kigPpn">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Acessar enquanto ainda custa R$19,90</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-14a4ed2 elementor-align-center elementor-icon-list--layout-inline elementor-mobile-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="14a4ed2" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-lock"></i>						</span>
+										<span class="elementor-icon-list-text">Compra 100% Segura</span>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">7 Dias de Garantia</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-e3a3490 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="e3a3490" data-element_type="section" data-settings="{" background_background":"classic"}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6cbee4c8" data-id="6cbee4c8" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-777a741a elementor-widget elementor-widget-text-editor" data-id="777a741a" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>FAQ</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-798bf13e elementor-widget elementor-widget-heading" data-id="798bf13e" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Dúvidas Frequentes</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-602ee9eb elementor-widget elementor-widget-toggle" data-id="602ee9eb" data-element_type="widget" data-settings="{" _animation":"none"}" data-widget_type="toggle.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.15.0 - 20-08-2023 */
+.elementor-toggle{text-align:left}.elementor-toggle .elementor-tab-title{font-weight:700;line-height:1;margin:0;padding:15px;border-bottom:1px solid #d5d8dc;cursor:pointer;outline:none}.elementor-toggle .elementor-tab-title .elementor-toggle-icon{display:inline-block;width:1em}.elementor-toggle .elementor-tab-title .elementor-toggle-icon svg{-webkit-margin-start:-5px;margin-inline-start:-5px;width:1em;height:1em}.elementor-toggle .elementor-tab-title .elementor-toggle-icon.elementor-toggle-icon-right{float:right;text-align:right}.elementor-toggle .elementor-tab-title .elementor-toggle-icon.elementor-toggle-icon-left{float:left;text-align:left}.elementor-toggle .elementor-tab-title .elementor-toggle-icon .elementor-toggle-icon-closed{display:block}.elementor-toggle .elementor-tab-title .elementor-toggle-icon .elementor-toggle-icon-opened{display:none}.elementor-toggle .elementor-tab-title.elementor-active{border-bottom:none}.elementor-toggle .elementor-tab-title.elementor-active .elementor-toggle-icon-closed{display:none}.elementor-toggle .elementor-tab-title.elementor-active .elementor-toggle-icon-opened{display:block}.elementor-toggle .elementor-tab-content{padding:15px;border-bottom:1px solid #d5d8dc;display:none}@media (max-width:767px){.elementor-toggle .elementor-tab-title{padding:12px}.elementor-toggle .elementor-tab-content{padding:12px 10px}}.e-con-inner>.elementor-widget-toggle,.e-con>.elementor-widget-toggle{width:var(--container-widget-width);--flex-grow:var(--container-widget-flex-grow)}</style>		<div class="elementor-toggle">
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-1611" class="elementor-tab-title" data-tab="1" role="button" aria-controls="elementor-tab-content-1611" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-right" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><i class="fas fa-caret-right"></i></span>
+								<span class="elementor-toggle-icon-opened"><i class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Quanto tempo demora até o acesso chegar para mim?</a>
+					</div>
+
+					<div id="elementor-tab-content-1611" class="elementor-tab-content elementor-clearfix" data-tab="1" role="region" aria-labelledby="elementor-tab-title-1611"><p>Geralmente, o acesso é imediato. Assim que o seu pagamento é aprovado, você receberá um email da Kiwify com um link de acesso ao treinamento.</p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-1612" class="elementor-tab-title" data-tab="2" role="button" aria-controls="elementor-tab-content-1612" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-right" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><i class="fas fa-caret-right"></i></span>
+								<span class="elementor-toggle-icon-opened"><i class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Por quanto tempo eu terei acesso às aulas?</a>
+					</div>
+
+					<div id="elementor-tab-content-1612" class="elementor-tab-content elementor-clearfix" data-tab="2" role="region" aria-labelledby="elementor-tab-title-1612"><p>O seu acesso ao Hackeando as Mulheres é vitalício. Isso significa que você paga APENAS UMA VEZ o material, e ele é seu para sempre, sem necessidade de renovação.</p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-1613" class="elementor-tab-title" data-tab="3" role="button" aria-controls="elementor-tab-content-1613" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-right" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><i class="fas fa-caret-right"></i></span>
+								<span class="elementor-toggle-icon-opened"><i class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Quais as formas de pagamento?</a>
+					</div>
+
+					<div id="elementor-tab-content-1613" class="elementor-tab-content elementor-clearfix" data-tab="3" role="region" aria-labelledby="elementor-tab-title-1613"><p>Cartão de crédito e PIX.</p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-1614" class="elementor-tab-title" data-tab="4" role="button" aria-controls="elementor-tab-content-1614" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-right" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><i class="fas fa-caret-right"></i></span>
+								<span class="elementor-toggle-icon-opened"><i class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">As aulas vão entregues por e-mail?</a>
+					</div>
+
+					<div id="elementor-tab-content-1614" class="elementor-tab-content elementor-clearfix" data-tab="4" role="region" aria-labelledby="elementor-tab-title-1614">Não. O que será entregue por email será um link de acesso à área de membros, onde lá sim estarão as aulas.</div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-1615" class="elementor-tab-title" data-tab="5" role="button" aria-controls="elementor-tab-content-1615" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-right" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><i class="fas fa-caret-right"></i></span>
+								<span class="elementor-toggle-icon-opened"><i class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Isso dá certo mesmo? Tem alguma garantia?</a>
+					</div>
+
+					<div id="elementor-tab-content-1615" class="elementor-tab-content elementor-clearfix" data-tab="5" role="region" aria-labelledby="elementor-tab-title-1615">Se você colocar os conhecimentos em prática, sim. Afinal, nós passamos um material cientificamente comprovado, e não uma fórmula mágica. Portanto, praticar os conteúdos é uma peça fundamental. 
+<br>
+<br>
+E de qualquer forma, nós temos uma garantia incondicional de 7 dias, o que significa que você pode testar o conteúdo e, caso não goste, pedir o seu dinheiro de volta dentro do prazo estipulado.</div>
+				</div>
+							<div class="elementor-toggle-item">
+					<div id="elementor-tab-title-1616" class="elementor-tab-title" data-tab="6" role="button" aria-controls="elementor-tab-content-1616" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-right" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><i class="fas fa-caret-right"></i></span>
+								<span class="elementor-toggle-icon-opened"><i class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Sou muito iniciante e pouco experiente com mulheres. O treinamento vai ajudar?</a>
+					</div>
+
+					<div id="elementor-tab-content-1616" class="elementor-tab-content elementor-clearfix" data-tab="6" role="region" aria-labelledby="elementor-tab-title-1616">Sim! Embora seja um conhecimento avançado, a metodologia e a didática das aulas foi estruturada de forma que mesmo um completo iniciante consiga ter muito resultado.</div>
+				</div>
+										<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quanto tempo demora at\u00e9 o acesso chegar para mim?","acceptedAnswer":{"@type":"Answer","text":"<p>Geralmente, o acesso \u00e9 imediato. Assim que o seu pagamento \u00e9 aprovado, voc\u00ea receber\u00e1 um email da Kiwify com um link de acesso ao treinamento.<\/p>"}},{"@type":"Question","name":"Por quanto tempo eu terei acesso \u00e0s aulas?","acceptedAnswer":{"@type":"Answer","text":"<p>O seu acesso ao Hackeando as Mulheres \u00e9 vital\u00edcio. Isso significa que voc\u00ea paga APENAS UMA VEZ o material, e ele \u00e9 seu para sempre, sem necessidade de renova\u00e7\u00e3o.<\/p>"}},{"@type":"Question","name":"Quais as formas de pagamento?","acceptedAnswer":{"@type":"Answer","text":"<p>Cart\u00e3o de cr\u00e9dito e PIX.<\/p>"}},{"@type":"Question","name":"As aulas v\u00e3o entregues por e-mail?","acceptedAnswer":{"@type":"Answer","text":"N\u00e3o. O que ser\u00e1 entregue por email ser\u00e1 um link de acesso \u00e0 \u00e1rea de membros, onde l\u00e1 sim estar\u00e3o as aulas."}},{"@type":"Question","name":"Isso d\u00e1 certo mesmo? Tem alguma garantia?","acceptedAnswer":{"@type":"Answer","text":"Se voc\u00ea colocar os conhecimentos em pr\u00e1tica, sim. Afinal, n\u00f3s passamos um material cientificamente comprovado, e n\u00e3o uma f\u00f3rmula m\u00e1gica. Portanto, praticar os conte\u00fados \u00e9 uma pe\u00e7a fundamental. \n<br>\n<br>\nE de qualquer forma, n\u00f3s temos uma garantia incondicional de 7 dias, o que significa que voc\u00ea pode testar o conte\u00fado e, caso n\u00e3o goste, pedir o seu dinheiro de volta dentro do prazo estipulado."}},{"@type":"Question","name":"Sou muito iniciante e pouco experiente com mulheres. O treinamento vai ajudar?","acceptedAnswer":{"@type":"Answer","text":"Sim! Embora seja um conhecimento avan\u00e7ado, a metodologia e a did\u00e1tica das aulas foi estruturada de forma que mesmo um completo iniciante consiga ter muito resultado."}}]}</script>
+					</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-668b459a elementor-align-center elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="668b459a" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-lg elementor-animation-grow" href="https://pay.kiwify.com.br/1kigPpn">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Acessar enquanto ainda custa R$19,90</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-4ee4c4b6 elementor-align-center elementor-icon-list--layout-inline elementor-mobile-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="4ee4c4b6" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-lock"></i>						</span>
+										<span class="elementor-icon-list-text">Pagamento 100% Seguro</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-63de0c7e elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="63de0c7e" data-element_type="section" data-settings="{" background_background":"classic"}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-79184a70" data-id="79184a70" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-5f4648ea elementor-widget elementor-widget-text-editor" data-id="5f4648ea" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Este site não faz parte do site do Facebook ou Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de forma alguma. FACEBOOK é uma marca comercial da FACEBOOK, Inc.</p><p>Copyright © 2023 <strong>O Imperialista</strong>. Todos os direitos reservados.</p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+							</font></font></div><font color="#FF221D"><font color="#FF221D">
+		<script>document.body.classList.remove("no-js");</script>	<script type="rocketlazyloadscript">
+	if ( -1 !== navigator.userAgent.indexOf( 'MSIE' ) || -1 !== navigator.appVersion.indexOf( 'Trident/' ) ) {
+		document.body.classList.add( 'is-IE' );
+	}
+	</script>
+	<!-- Click to Chat - https://holithemes.com/plugins/click-to-chat/  v3.29.3 -->  
+            <div class="ht-ctc ht-ctc-chat ctc-analytics ctc_wp_desktop style-2  " id="ht-ctc-chat" style="display: none;  position: fixed; bottom: 15px; right: 15px;">
+                                <div class="ht_ctc_style ht_ctc_chat_style">
+                <div style="display: flex; justify-content: center; align-items: center;  " class="ctc-analytics">
+    <p class="ctc-analytics ctc_cta ctc_cta_stick ht-ctc-cta  ht-ctc-cta-hover " style="padding: 0px 16px; line-height: 1.6; font-size: 15px; background-color: #25D366; color: #ffffff; border-radius:10px; margin:0 10px;  display: none; order: 0; ">Fale conosco</p>
+    <svg style="pointer-events:none; display:block; height:50px; width:50px;" width="50px" height="50px" viewBox="0 0 1024 1024">
+        <defs>
+        <path id="htwasqicona-chat" d="M1023.941 765.153c0 5.606-.171 17.766-.508 27.159-.824 22.982-2.646 52.639-5.401 66.151-4.141 20.306-10.392 39.472-18.542 55.425-9.643 18.871-21.943 35.775-36.559 50.364-14.584 14.56-31.472 26.812-50.315 36.416-16.036 8.172-35.322 14.426-55.744 18.549-13.378 2.701-42.812 4.488-65.648 5.3-9.402.336-21.564.505-27.15.505l-504.226-.081c-5.607 0-17.765-.172-27.158-.509-22.983-.824-52.639-2.646-66.152-5.4-20.306-4.142-39.473-10.392-55.425-18.542-18.872-9.644-35.775-21.944-50.364-36.56-14.56-14.584-26.812-31.471-36.415-50.314-8.174-16.037-14.428-35.323-18.551-55.744-2.7-13.378-4.487-42.812-5.3-65.649-.334-9.401-.503-21.563-.503-27.148l.08-504.228c0-5.607.171-17.766.508-27.159.825-22.983 2.646-52.639 5.401-66.151 4.141-20.306 10.391-39.473 18.542-55.426C34.154 93.24 46.455 76.336 61.07 61.747c14.584-14.559 31.472-26.812 50.315-36.416 16.037-8.172 35.324-14.426 55.745-18.549 13.377-2.701 42.812-4.488 65.648-5.3 9.402-.335 21.565-.504 27.149-.504l504.227.081c5.608 0 17.766.171 27.159.508 22.983.825 52.638 2.646 66.152 5.401 20.305 4.141 39.472 10.391 55.425 18.542 18.871 9.643 35.774 21.944 50.363 36.559 14.559 14.584 26.812 31.471 36.415 50.315 8.174 16.037 14.428 35.323 18.551 55.744 2.7 13.378 4.486 42.812 5.3 65.649.335 9.402.504 21.564.504 27.15l-.082 504.226z"/>
+        </defs>
+        <lineargradient id="htwasqiconb-chat" gradientUnits="userSpaceOnUse" x1="512.001" y1=".978" x2="512.001" y2="1025.023">
+            <stop offset="0" stop-color="#61fd7d"/>
+            <stop offset="1" stop-color="#2bb826"/>
+        </lineargradient>
+        <use xlink:href="#htwasqicona-chat" overflow="visible" style="fill: url(hm-3.html#htwasqiconb-chat)" fill="url(#htwasqiconb-chat)"/>
+        <g>
+            <path style="fill: #FFFFFF;" fill="#FFF" d="M783.302 243.246c-69.329-69.387-161.529-107.619-259.763-107.658-202.402 0-367.133 164.668-367.214 367.072-.026 64.699 16.883 127.854 49.017 183.522l-52.096 190.229 194.665-51.047c53.636 29.244 114.022 44.656 175.482 44.682h.151c202.382 0 367.128-164.688 367.21-367.094.039-98.087-38.121-190.319-107.452-259.706zM523.544 808.047h-.125c-54.767-.021-108.483-14.729-155.344-42.529l-11.146-6.612-115.517 30.293 30.834-112.592-7.259-11.544c-30.552-48.579-46.688-104.729-46.664-162.379.066-168.229 136.985-305.096 305.339-305.096 81.521.031 158.154 31.811 215.779 89.482s89.342 134.332 89.312 215.859c-.066 168.243-136.984 305.118-305.209 305.118zm167.415-228.515c-9.177-4.591-54.286-26.782-62.697-29.843-8.41-3.062-14.526-4.592-20.645 4.592-6.115 9.182-23.699 29.843-29.053 35.964-5.352 6.122-10.704 6.888-19.879 2.296-9.176-4.591-38.74-14.277-73.786-45.526-27.275-24.319-45.691-54.359-51.043-63.543-5.352-9.183-.569-14.146 4.024-18.72 4.127-4.109 9.175-10.713 13.763-16.069 4.587-5.355 6.117-9.183 9.175-15.304 3.059-6.122 1.529-11.479-.765-16.07-2.293-4.591-20.644-49.739-28.29-68.104-7.447-17.886-15.013-15.466-20.645-15.747-5.346-.266-11.469-.322-17.585-.322s-16.057 2.295-24.467 11.478-32.113 31.374-32.113 76.521c0 45.147 32.877 88.764 37.465 94.885 4.588 6.122 64.699 98.771 156.741 138.502 21.892 9.45 38.982 15.094 52.308 19.322 21.98 6.979 41.982 5.995 57.793 3.634 17.628-2.633 54.284-22.189 61.932-43.615 7.646-21.427 7.646-39.791 5.352-43.617-2.294-3.826-8.41-6.122-17.585-10.714z"/>
+        </g>
+        </svg></div>                </div>
+            </div>
+                        <span class="ht_ctc_chat_data" data-no_number data-settings="{" number":"5518997395660","pre_filled":"Opa! Tenho uma d\u00favida!","dis_m":"show","dis_d":"show","css":"display: none; cursor: pointer; z-index: 99999999;","pos_d":"position: fixed; bottom: 15px; right: 15px;","pos_m":"position: 15px;","schedule":"no","se":150,"ani":"no-animations","url_target_d":"_blank","ga":"yes","fb":"yes"}"></span>
+            		<div data-elementor-type="popup" data-elementor-id="17720" class="elementor elementor-17720 elementor-location-popup" data-elementor-settings="{" a11y_navigation":"yes","triggers":[],"timing":[]}" data-elementor-post-type="elementor_library">
+								<section class="elementor-section elementor-top-section elementor-element elementor-element-dba83a1 elementor-section-full_width elementor-section-height-full elementor-section-height-default elementor-section-items-middle" data-id="dba83a1" data-element_type="section" data-settings="{" background_background":"classic"}">
+							<div class="elementor-background-overlay"></div>
+							<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-f3f19d1" data-id="f3f19d1" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<section class="elementor-section elementor-inner-section elementor-element elementor-element-8f1cea3 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8f1cea3" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-1f45a03" data-id="1f45a03" data-element_type="column" data-settings="{" background_background":"classic"}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-97f092a elementor-widget elementor-widget-heading" data-id="97f092a" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Falta pouco...</h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<div class="elementor-element elementor-element-9732151 elementor-widget elementor-widget-text-editor" data-id="9732151" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><b>Preencha seus dados abaixo</b> corretamente para você finalizar sua inscrição:</p>						</div>
+				</div>
+				<section class="elementor-section elementor-inner-section elementor-element elementor-element-d419e3b elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="d419e3b" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-050fa9f" data-id="050fa9f" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-026755f elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="026755f" data-element_type="widget" data-settings="{" step_next_label":"Pr\u00f3ximo","step_previous_label":"Anterior","button_width":"100","step_type":"number_text","step_icon_shape":"circle"}" data-widget_type="form.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor-pro - v3.15.0 - 09-08-2023 */
+.elementor-button.elementor-hidden,.elementor-hidden{display:none}.e-form__step{width:100%}.e-form__step:not(.elementor-hidden){display:flex;flex-wrap:wrap}.e-form__buttons{flex-wrap:wrap}.e-form__buttons,.e-form__buttons__wrapper{display:flex}.e-form__indicators{display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap;font-size:13px;margin-bottom:var(--e-form-steps-indicators-spacing)}.e-form__indicators__indicator{display:flex;flex-direction:column;align-items:center;justify-content:center;flex-basis:0;padding:0 var(--e-form-steps-divider-gap)}.e-form__indicators__indicator__progress{width:100%;position:relative;background-color:var(--e-form-steps-indicator-progress-background-color);border-radius:var(--e-form-steps-indicator-progress-border-radius);overflow:hidden}.e-form__indicators__indicator__progress__meter{width:var(--e-form-steps-indicator-progress-meter-width,0);height:var(--e-form-steps-indicator-progress-height);line-height:var(--e-form-steps-indicator-progress-height);padding-right:15px;border-radius:var(--e-form-steps-indicator-progress-border-radius);background-color:var(--e-form-steps-indicator-progress-color);color:var(--e-form-steps-indicator-progress-meter-color);text-align:right;transition:width .1s linear}.e-form__indicators__indicator:first-child{padding-left:0}.e-form__indicators__indicator:last-child{padding-right:0}.e-form__indicators__indicator--state-inactive{color:var(--e-form-steps-indicator-inactive-primary-color,#c2cbd2)}.e-form__indicators__indicator--state-inactive [class*=indicator--shape-]:not(.e-form__indicators__indicator--shape-none){background-color:var(--e-form-steps-indicator-inactive-secondary-color,#fff)}.e-form__indicators__indicator--state-inactive object,.e-form__indicators__indicator--state-inactive svg{fill:var(--e-form-steps-indicator-inactive-primary-color,#c2cbd2)}.e-form__indicators__indicator--state-active{color:var(--e-form-steps-indicator-active-primary-color,#39b54a);border-color:var(--e-form-steps-indicator-active-secondary-color,#fff)}.e-form__indicators__indicator--state-active [class*=indicator--shape-]:not(.e-form__indicators__indicator--shape-none){background-color:var(--e-form-steps-indicator-active-secondary-color,#fff)}.e-form__indicators__indicator--state-active object,.e-form__indicators__indicator--state-active svg{fill:var(--e-form-steps-indicator-active-primary-color,#39b54a)}.e-form__indicators__indicator--state-completed{color:var(--e-form-steps-indicator-completed-secondary-color,#fff)}.e-form__indicators__indicator--state-completed [class*=indicator--shape-]:not(.e-form__indicators__indicator--shape-none){background-color:var(--e-form-steps-indicator-completed-primary-color,#39b54a)}.e-form__indicators__indicator--state-completed .e-form__indicators__indicator__label{color:var(--e-form-steps-indicator-completed-primary-color,#39b54a)}.e-form__indicators__indicator--state-completed .e-form__indicators__indicator--shape-none{color:var(--e-form-steps-indicator-completed-primary-color,#39b54a);background-color:initial}.e-form__indicators__indicator--state-completed object,.e-form__indicators__indicator--state-completed svg{fill:var(--e-form-steps-indicator-completed-secondary-color,#fff)}.e-form__indicators__indicator__icon{width:var(--e-form-steps-indicator-padding,30px);height:var(--e-form-steps-indicator-padding,30px);font-size:var(--e-form-steps-indicator-icon-size);border-width:1px;border-style:solid;display:flex;justify-content:center;align-items:center;overflow:hidden;margin-bottom:10px}.e-form__indicators__indicator__icon img,.e-form__indicators__indicator__icon object,.e-form__indicators__indicator__icon svg{width:var(--e-form-steps-indicator-icon-size);height:auto}.e-form__indicators__indicator__icon .e-font-icon-svg{height:1em}.e-form__indicators__indicator__number{width:var(--e-form-steps-indicator-padding,30px);height:var(--e-form-steps-indicator-padding,30px);border-width:1px;border-style:solid;display:flex;justify-content:center;align-items:center;margin-bottom:10px}.e-form__indicators__indicator--shape-circle{border-radius:50%}.e-form__indicators__indicator--shape-square{border-radius:0}.e-form__indicators__indicator--shape-rounded{border-radius:5px}.e-form__indicators__indicator--shape-none{border:0}.e-form__indicators__indicator__label{text-align:center}.e-form__indicators__indicator__separator{width:100%;height:var(--e-form-steps-divider-width);background-color:#babfc5}.e-form__indicators--type-icon,.e-form__indicators--type-icon_text,.e-form__indicators--type-number,.e-form__indicators--type-number_text{align-items:flex-start}.e-form__indicators--type-icon .e-form__indicators__indicator__separator,.e-form__indicators--type-icon_text .e-form__indicators__indicator__separator,.e-form__indicators--type-number .e-form__indicators__indicator__separator,.e-form__indicators--type-number_text .e-form__indicators__indicator__separator{margin-top:calc(var(--e-form-steps-indicator-padding, 30px) / 2 - var(--e-form-steps-divider-width, 1px) / 2)}.elementor-field-type-hidden{display:none}.elementor-field-type-html{display:inline-block}.elementor-login .elementor-lost-password,.elementor-login .elementor-remember-me{font-size:.85em}.elementor-field-type-recaptcha_v3 .elementor-field-label{display:none}.elementor-field-type-recaptcha_v3 .grecaptcha-badge{z-index:1}.elementor-button .elementor-form-spinner{order:3}.elementor-form .elementor-button>span{display:flex;justify-content:center;align-items:center}.elementor-form .elementor-button .elementor-button-text{white-space:normal;flex-grow:0}.elementor-form .elementor-button svg{height:auto}.elementor-form .elementor-button .e-font-icon-svg{height:1em}.elementor-select-wrapper .select-caret-down-wrapper{position:absolute;top:50%;transform:translateY(-50%);inset-inline-end:10px;pointer-events:none;font-size:11px}.elementor-select-wrapper .select-caret-down-wrapper svg{display:unset;width:1em;aspect-ratio:unset;fill:currentColor}.elementor-select-wrapper .select-caret-down-wrapper i{font-size:19px;line-height:2}.elementor-select-wrapper.remove-before:before{content:""!important}</style>		<form class="elementor-form" method="post" name="Novo formulário">
+			<input type="hidden" name="post_id" value="17720">
+			<input type="hidden" name="form_id" value="026755f">
+			<input type="hidden" name="referer_title" value="Hackeando as Mulheres - O Imperialista">
+
+							<input type="hidden" name="queried_id" value="24835">
+			
+			<div class="elementor-form-fields-wrapper elementor-labels-above">
+								<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-100 elementor-field-required">
+													<input size="1" type="text" name="form_fields[name]" id="form-field-name" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Digite seu nome aqui" required="required" aria-required="true">
+											</div>
+								<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
+													<input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Digite seu e-mail aqui" required="required" aria-required="true">
+											</div>
+								<div class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_d7e8ebe elementor-col-100 elementor-field-required">
+							<input size="1" type="tel" name="form_fields[field_d7e8ebe]" id="form-field-field_d7e8ebe" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Digite seu número com DDD aqui" required="required" aria-required="true" pattern="[0-9()#&+*-=.]+" title="Apenas números e caracteres de telefone (#, -, *, etc.) são aceitos.">
+
+						</div>
+								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
+					<button type="submit" class="elementor-button elementor-size-sm elementor-animation-float">
+						<span>
+															<span class=" elementor-button-icon">
+																										</span>
+																						<span class="elementor-button-text">Enviar</span>
+													</span>
+					</button>
+				</div>
+			</div>
+		</form>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<div class="elementor-element elementor-element-1f94653 elementor-align-center elementor-icon-list--layout-inline elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="1f94653" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-lock"></i>						</span>
+										<span class="elementor-icon-list-text">100% Seguro</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+		<noscript><img height="1" width="1" style="display: none;" src="tr" alt></noscript>
+<link rel="stylesheet" id="e-animations-css" href="css/animations.min.css" media="all">
+<script id="ht_ctc_app_js-js-extra">
+var ht_ctc_chat_var = {"number":"5518997395660","pre_filled":"Opa! Tenho uma d\u00favida!","dis_m":"show","dis_d":"show","css":"display: none; cursor: pointer; z-index: 99999999;","pos_d":"position: fixed; bottom: 15px; right: 15px;","pos_m":"position: fixed; bottom: 15px; right: 15px;","schedule":"no","se":"150","ani":"no-animations","url_target_d":"_blank","ga":"yes","fb":"yes"};
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://oimperialista.com.br/wp-content/cache/min/1/wp-content/plugins/click-to-chat-for-whatsapp/new/inc/assets/js/app.js?ver=1687458808" id="ht_ctc_app_js-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://oimperialista.com.br/wp-content/cache/min/1/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=1687458808" id="swv-js" defer></script>
+<script id="contact-form-7-js-extra">
+var wpcf7 = {"api":{"root":"https:\/\/oimperialista.com.br\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://oimperialista.com.br/wp-content/cache/min/1/wp-content/plugins/contact-form-7/includes/js/index.js?ver=1687458808" id="contact-form-7-js" defer></script>
+<script type="rocketlazyloadscript" id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script id="rocket-preload-links-js-extra">
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index.php\/)?(.*)wp-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/oimperialista.com.br","onHoverDelay":"100","rateThrottle":"3"};
+</script>
+<script type="rocketlazyloadscript" id="rocket-preload-links-js-after">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type="rocketlazyloadscript" id="twenty-twenty-one-ie11-polyfills-js-after">
+( Element.prototype.matches && Element.prototype.closest && window.NodeList && NodeList.prototype.forEach ) || document.write( '<script data-minify="1" src="https://oimperialista.com.br/wp-content/cache/min/1/wp-content/themes/twentytwentyone/assets/js/polyfills.js?ver=1687458808" defer></scr' + 'ipt>' );
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://oimperialista.com.br/wp-content/cache/min/1/wp-content/themes/twentytwentyone/assets/js/responsive-embeds.js?ver=1687458808" id="twenty-twenty-one-responsive-embeds-script-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.15.1" id="elementor-pro-webpack-runtime-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.15.3" id="elementor-webpack-runtime-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.15.3" id="elementor-frontend-modules-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js?ver=3.1.2" id="wp-polyfill-inert-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.11" id="regenerator-runtime-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0" id="wp-polyfill-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/dist/hooks.min.js?ver=c6aec9a8d4e5a5d543a1" id="wp-hooks-js"></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/dist/i18n.min.js?ver=7701b0c3857f914212ef" id="wp-i18n-js"></script>
+<script type="rocketlazyloadscript" id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+</script>
+<script type="rocketlazyloadscript" id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/oimperialista.com.br\/wp-admin\/admin-ajax.php","nonce":"ea9784f4f9","urls":{"assets":"https:\/\/oimperialista.com.br\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/oimperialista.com.br\/wp-json\/"},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},
+"facebook_sdk":{"lang":"pt_BR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/oimperialista.com.br\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.15.1" id="elementor-pro-frontend-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2" id="elementor-waypoints-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-includes/js/jquery/ui/core.min.js?ver=1.13.2" id="jquery-ui-core-js" defer></script>
+<script type="rocketlazyloadscript" id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartilhar no Facebook","shareOnTwitter":"Compartilhar no Twitter","pinIt":"Fixar","download":"Baixar","downloadImage":"Baixar imagem","fullscreen":"Tela cheia","zoom":"Zoom","share":"Compartilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Pr\u00f3ximo","close":"Fechar","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Celular em modo retrato","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Celular em modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Retrato","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Paisagem do tablet","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},
+"version":"3.15.3","is_static":false,"experimentalFeatures":{"e_dom_optimization":true,"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"additional_custom_breakpoints":true,"theme_builder_v2":true,"landing-pages":true,"page-transitions":true,"notes":true,"loop":true,"form-submissions":true,"e_scroll_snap":true},"urls":{"assets":"https:\/\/oimperialista.com.br\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper-container","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":24835,"title":"Hackeando%20as%20Mulheres%20-%20O%20Imperialista","excerpt":"","featuredImage":false}};
+</script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.15.3" id="elementor-frontend-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-src="https://oimperialista.com.br/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.15.1" id="pro-elements-handlers-js" defer></script>
+		<script type="rocketlazyloadscript">
+		/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",(function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())}),!1);
+		</script>
+		<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHMNQ4L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="js/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi_webp/ID/hqdefault.webp" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi_webp/ID/hqdefault.webp" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script>	<script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode-wpr",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script>
+
+
+</font></font><span id="elementor-device-mode-wpr" class="elementor-screen-only"></span></body></html>
